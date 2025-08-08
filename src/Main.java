@@ -51,7 +51,7 @@ public class Main {
 
                 System.out.println("Gib deine erste Farbe ein!");
                 String eingabeeins = spielregel.nextLine();
-
+ j
                 String eingabezwei = spielregel.nextLine();
                 System.out.println("Gib deine zweite Farbe ein!");
 
