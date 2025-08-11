@@ -103,8 +103,8 @@ public class Main {
                 if (versuche % 3 == 0 ) {
                     if (!(versuche == 12)) {
                         System.out.println("\n#################################################################");
-                    System.out.println("Farben: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange");
-                    System.out.println("#################################################################");
+                        System.out.println("Farben: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange");
+                        System.out.println("#################################################################");
                     }
                 }
 
@@ -112,14 +112,17 @@ public class Main {
 
 
             if (!gewonnen) {
-                System.out.println("Leider verloren");
+                System.out.println("\n#################################################################");
+                System.out.println("Leider verloren! ");
             }
 
             System.out.print("Möchtest du noch eine Runde spielen? (r = ja / b = beenden): ");
             String antwort = spielregel.nextLine();
+            System.out.println("#################################################################");
             if (!antwort.equals("r")) {
                 weiterspielen = false;
             }
+
         }
     }
 }
