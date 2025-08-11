@@ -7,16 +7,12 @@ public class Main {
     public static void main(String[] args) {
 
         Random generator = new Random();
-        int counter = 0;
-        int richtigerort = 0;
-        int richtigefarben = 0;
-        int countereins = 1;
 
         String[] farben = {
                 "rot", "blau", "grün", "gelb", "pink", "schwarz", "grau", "orange"
         };
 
-        System.out.println("Kennst du das Spiel MasterMind? Für ja = 1/ Für nein = 2 ");
+        System.out.println("Kennst du das Spiel MasterMind? Für ja = 1 / Für nein = 2 ");
         int entscheidung1 = Integer.parseInt(spielregel.nextLine());
 
         if (entscheidung1 == 1) {
@@ -25,124 +21,93 @@ public class Main {
 
         if (entscheidung1 == 2) {
             System.out.println("Spielregeln:\n" +
-                    "\n" +
                     "Es gibt eine versteckte Farbenfolge, die aus vier Farben besteht\n" +
-                    "\n" +
-                    "Dabei dürfen die Farben doppelt vorkommen.\n" +
-                    "\n" +
-                    "Es gibt die Farben: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange\n" +
-                    "\n" +
-                    "Als Spieler gibst du in der Konsole eine Farbfolge ein (durch ein Leerzeichen getrennt.)\n" +
-                    "\n" +
-                    "Das Spiel gibt die eine Rückmeldung (X ein Farbe ist korrekt und am richtigen Platz, 0 eine Farbe ist Korekkt aber steht am falschen Platz. _ nicht in der geheimen Farbfolge.)\n" +
-                    "\n" +
-                    "Das Spiel endet, wenn du die richtige Reihenfolge innert 12 Versuchen errätst.\n" +
-                    "\n" +
-                    "Ansonsten hast du nach 12 Versuchen verloren.");
+                    "Dabei dürfen die Farben doppelt vorkommen\n" +
+                    "Farben: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange\n" +
+                    "Du gibst nacheinander vier Farben ein\n" +
+                    "Maximal 12 Versuche");
         }
 
-        while (countereins == 1) {
+        boolean weiterspielen = true;
 
-            String farbenzufaellig1 = farben[generator.nextInt(farben.length)];
-            String farbenzufaellig2 = farben[generator.nextInt(farben.length)];
-            String farbenzufaellig3 = farben[generator.nextInt(farben.length)];
-            String farbenzufaellig4 = farben[generator.nextInt(farben.length)];
-            richtigefarben = 0;
-            richtigefarben = 0;
-            counter = 0;
+        while (weiterspielen) {
 
-            System.out.println(farbenzufaellig1 + farbenzufaellig2 + farbenzufaellig3 + farbenzufaellig4);
-            while (counter <= 12) {
+            // Zufällige Farbfolge
+            String[] geheimCode = new String[4];
+            for (int i = 0; i < 4; i++) {
+                geheimCode[i] = farben[generator.nextInt(farben.length)];
+            }
 
-                countereins++;
-                counter++;
-                richtigefarben = 0;
-                richtigerort = 0;
+            int versuche = 0;
+            boolean gewonnen = false;
 
+            while (versuche < 12) {
+                versuche++;
+
+                System.out.println("\nVersuch " + versuche + " von 12");
+
+                // Eingabe
+                String[] eingabe = new String[4];
                 System.out.print("Gib deine erste Farbe ein: ");
-                String eingabeeins = spielregel.nextLine();
+                eingabe[0] = spielregel.nextLine();
 
                 System.out.print("Gib deine zweite Farbe ein: ");
-                String eingabezwei = spielregel.nextLine();
+                eingabe[1] = spielregel.nextLine();
 
                 System.out.print("Gib deine dritte Farbe ein: ");
-                String eingabedrei = spielregel.nextLine();
+                eingabe[2] = spielregel.nextLine();
 
                 System.out.print("Gib deine vierte Farbe ein: ");
-                String eingabevier = spielregel.nextLine();
+                eingabe[3] = spielregel.nextLine();
 
-                if (eingabeeins.equals(farbenzufaellig1)) {
-                    richtigerort++;
-                }
-                if (eingabeeins.equals(farbenzufaellig2)) {
-                    richtigefarben++;
-                }
-                if (eingabeeins.equals(farbenzufaellig3)) {
-                    richtigefarben++;
-                }
-                if (eingabeeins.equals(farbenzufaellig4)) {
-                    richtigefarben++;
-                }
+                // Vergleich
+                int richtigerOrt = 0;
+                int richtigeFarbe = 0;
+                boolean[] benutztGeheim = new boolean[4];
+                boolean[] benutztEingabe = new boolean[4];
 
-
-                if (eingabezwei.equals(farbenzufaellig1)) {
-                    richtigefarben++;
-                }
-                if (eingabezwei.equals(farbenzufaellig2)) {
-                    richtigerort++;
-                }
-                if (eingabezwei.equals(farbenzufaellig3)) {
-                    richtigefarben++;
-                }
-                if (eingabezwei.equals(farbenzufaellig4)) {
-                    richtigefarben++;
+                // Richtiger Ort
+                for (int i = 0; i < 4; i++) {
+                    if (eingabe[i].equals(geheimCode[i])) {
+                        richtigerOrt++;
+                        benutztGeheim[i] = true;
+                        benutztEingabe[i] = true;
+                    }
                 }
 
-                if (eingabedrei.equals(farbenzufaellig1)) {
-                    richtigefarben++;
-                }
-                if (eingabedrei.equals(farbenzufaellig2)) {
-                    richtigefarben++;
-                }
-                if (eingabedrei.equals(farbenzufaellig3)) {
-                    richtigerort++;
-                }
-                if (eingabedrei.equals(farbenzufaellig4)) {
-                    richtigefarben++;
-                }
-
-
-                if (eingabevier.equals(farbenzufaellig1)) {
-                    richtigefarben++;
-                }
-                if (eingabevier.equals(farbenzufaellig2)) {
-                    richtigefarben++;
-                }
-                if (eingabevier.equals(farbenzufaellig3)) {
-                    richtigefarben++;
-                }
-                if (eingabevier.equals(farbenzufaellig4)) {
-                    richtigerort++;
-                }
-
-
-                if (!(richtigerort == 4)) {
-                    System.out.println("So viele sind richtig: " + richtigerort +
-                            " und so viele sind an falscher Stelle: " + richtigefarben + ".");
-                }
-
-                if (richtigerort == 4) {
-                    System.out.println("Gratulieren, du hast gewonnen!");
-                    System.out.println("Drücke r, um noch eine Runde zuspielen und b um das Spiel zubeenden");
-                    String letzteeingabe = spielregel.nextLine();
-                    if (letzteeingabe.equals("r")) {
-                        countereins = 1;
-                    } else {
-                        System.exit(0);
+                // Richtige Farbe an falscher Stelle
+                for (int i = 0; i < 4; i++) {
+                    if (!benutztEingabe[i]) {
+                        for (int j = 0; j < 4; j++) {
+                            if (!benutztGeheim[j] && eingabe[i].equals(geheimCode[j])) {
+                                richtigeFarbe++;
+                                benutztGeheim[j] = true;
+                                break;
+                            }
+                        }
                     }
                 }
 
 
+                if (richtigerOrt == 4) {
+                    System.out.println(" Glückwunsch! Du hast gewonnen");
+                    gewonnen = true;
+                    break;
+                } else {
+                    System.out.println("Richtige Farben am richtigen Ort: " + richtigerOrt);
+                    System.out.println("Richtige Farben am falschen Ort: " + richtigeFarbe);
+                }
+            }
+
+            if (!gewonnen) {
+                System.out.println("Leider verloren");
+            }
+
+            // Nochmal spielen?
+            System.out.print("Möchtest du noch eine Runde spielen? (r = ja / b = beenden): ");
+            String antwort = spielregel.nextLine().toLowerCase();
+            if (!antwort.equals("r")) {
+                weiterspielen = false;
             }
         }
     }
