@@ -86,7 +86,7 @@ public class Main {
                         }
                     }
                     if (!richtigefarbe) {
-                        System.out.println("Diese Farbe gibt es nicht. Erlaubt: " + String.join(", ", farben));
+                        System.out.println("Diese Farbe gibt es nicht . Erlaubt: " + String.join(", ", farben));
                     }
                 }
             }
