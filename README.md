@@ -1,10 +1,20 @@
-Spielregeln:
-- Es gibt eine versteckte Farbenfolge, die aus vier Farben besteht
-- Dabei dürfen die Farben doppelt vorkommen.
-- Es gibt die Farben: Blau, Rot, Grün, Gelb, Orange, Violet
- 
-- Als Spieler gibst du in der Konsole eine Farbfolge ein (durch ein Leerzeichen getrennt.)
-- Das Spiel gibt die eine Rückmeldung (X ein Farbe ist korrekt und am richtigen Platz, 0 eine Farbe ist Korekkt aber steht am falschen Platz. _ nicht in der geheimen Farbfolge.)
- 
-- Das Spiel endet, wenn du die richtige Reihenfolge innert 12 Versuchen errätst. 
-- Ansonsten hast du nach 12 Versuchen verloren.
+private static void colorReader(String[] input, int currentColor){
+
+boolean correctcolor = false;
+while (!correctcolor) {
+System.out.println("Type in " + (currentColor + 1) + ". color:");
+String userInput = myObj.nextLine();
+for (String s : color) {
+if (s.equals(userInput.toLowerCase().replaceAll(" ", ""))){
+correctcolor = true;
+break;
+}
+}
+if (!correctcolor) {
+System.out.println("This color does not exist");
+}
+
+else {
+input[currentColor] = userInput;
+}
+        }
