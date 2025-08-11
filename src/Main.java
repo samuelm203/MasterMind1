@@ -33,7 +33,7 @@ public class Main {
 
     static void spielregeln() {
         System.out.println("Kennst du die Regeln für das Spiel MasterMind? Antworte mit Ja oder Nein!");
-        String entscheidung1 = spielregel.nextLine();
+        String entscheidung1 = spielregel.nextLine().toLowerCase();
 
         if (entscheidung1.equals("ja")) {
             System.out.println("Die möglichen Farben sind: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange");
