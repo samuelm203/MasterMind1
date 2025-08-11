@@ -5,13 +5,11 @@ public class Main {
     static Scanner spielregel = new Scanner(System.in);
 
     public static void main(String[] args) {
-
         Random generator = new Random();
 
         spielregeln();
 
         String[] geheimCode = new String[4];
-
         String[] farben = {
                 "rot", "blau", "grün", "gelb", "pink", "schwarz", "grau", "orange"
         };
@@ -25,14 +23,16 @@ public class Main {
             int versuche = 0;
             boolean gewonnen = false;
 
-            spiel(versuche, geheimCode, gewonnen);
+            spiel(farben, versuche, geheimCode, gewonnen);
 
             ende(gewonnen, weiterspielen);
         }
     }
 
+
+
     static void spielregeln() {
-        System.out.println("Kennst du die Regeln für das Spiel MasterMind?");
+        System.out.println("Kennst du die Regeln für das Spiel MasterMind? Antworte mit Ja oder Nein!");
         String entscheidung1 = spielregel.nextLine();
 
         if (entscheidung1.equals("ja")) {
@@ -56,7 +56,7 @@ public class Main {
         }
     }
 
-    static void spiel(int versuche, String [] geheimCode, boolean gewonnen) {
+    static void spiel(String [] farben, int versuche, String [] geheimCode, boolean gewonnen) {
         while (versuche < 12) {
             versuche++;
             System.out.println();
@@ -67,14 +67,38 @@ public class Main {
             System.out.print("Gib deine erste Farbe ein: ");
             eingabe[0] = spielregel.nextLine().toLowerCase();
 
+            if (!(farben.equals(eingabe[0]))) {
+                System.out.println("Ungültige Eingabe");
+                System.out.print("Gib deine erste Farbe ein: ");
+                eingabe[0] = spielregel.nextLine().toLowerCase();
+            }
+
             System.out.print("Gib deine zweite Farbe ein: ");
             eingabe[1] = spielregel.nextLine().toLowerCase();
+
+            if (!(farben.equals(eingabe[1]))) {
+                System.out.println("Ungültige Eingabe");
+                System.out.print("Gib deine zweite Farbe ein: ");
+                eingabe[1] = spielregel.nextLine().toLowerCase();
+            }
 
             System.out.print("Gib deine dritte Farbe ein: ");
             eingabe[2] = spielregel.nextLine().toLowerCase();
 
+            if (!(farben.equals(eingabe[2]))) {
+                System.out.println("Ungültige Eingabe");
+                System.out.print("Gib deine dritte Farbe ein: ");
+                eingabe[2] = spielregel.nextLine().toLowerCase();
+            }
+
             System.out.print("Gib deine vierte Farbe ein: ");
             eingabe[3] = spielregel.nextLine().toLowerCase();
+
+            if (!(farben.equals(eingabe[3]))) {
+                System.out.println("Ungültige Eingabe");
+                System.out.print("Gib deine vierte Farbe ein: ");
+                eingabe[3] = spielregel.nextLine().toLowerCase();
+            }
 
 
             int richtigerOrt = 0;
@@ -101,6 +125,7 @@ public class Main {
                     }
                 }
             }
+
 
 
             if (richtigerOrt == 4) {
