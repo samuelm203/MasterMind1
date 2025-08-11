@@ -10,6 +10,8 @@ public class Main {
 
         spielregeln();
 
+        String[] geheimCode = new String[4];
+
         String[] farben = {
                 "rot", "blau", "grün", "gelb", "pink", "schwarz", "grau", "orange"
         };
@@ -18,80 +20,13 @@ public class Main {
 
         while (weiterspielen) {
 
-            // Zufällige Farbfolge
-            String[] geheimCode = new String[4];
-            for (int i = 0; i < 4; i++) {
-                geheimCode[i] = farben[generator.nextInt(farben.length)];
-            }
+            farbfolge(farben, geheimCode);
 
             int versuche = 0;
             boolean gewonnen = false;
 
-            while (versuche < 12) {
-                versuche++;
-                System.out.println();
+            spiel(versuche, geheimCode, gewonnen);
 
-                System.out.println("\nVersuch " + versuche + " von 12");
-
-                // Eingabe der Farben
-                String[] eingabe = new String[4];
-                System.out.print("Gib deine erste Farbe ein: ");
-                eingabe[0] = spielregel.nextLine();
-
-                System.out.print("Gib deine zweite Farbe ein: ");
-                eingabe[1] = spielregel.nextLine();
-
-                System.out.print("Gib deine dritte Farbe ein: ");
-                eingabe[2] = spielregel.nextLine();
-
-                System.out.print("Gib deine vierte Farbe ein: ");
-                eingabe[3] = spielregel.nextLine();
-
-
-                int richtigerOrt = 0;
-                int richtigeFarbe = 0;
-                boolean[] benutztGeheim = new boolean[4];
-                boolean[] benutztEingabe = new boolean[4];
-
-                for (int i = 0; i < 4; i++) {
-                    if (eingabe[i].equals(geheimCode[i])) {
-                        richtigerOrt++;
-                        benutztGeheim[i] = true;
-                        benutztEingabe[i] = true;
-                    }
-                }
-
-                for (int i = 0; i < 4; i++) {
-                    if (!benutztEingabe[i]) {
-                        for (int j = 0; j < 4; j++) {
-                            if (!benutztGeheim[j] && eingabe[i].equals(geheimCode[j])) {
-                                richtigeFarbe++;
-                                benutztGeheim[j] = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-
-                if (richtigerOrt == 4) {
-                    System.out.println(" Glückwunsch! Du hast gewonnen");
-                    gewonnen = true;
-                    break;
-                } else {
-                    System.out.println("Richtige Farben am richtigen Ort: " + richtigerOrt);
-                    System.out.println("Richtige Farben am falschen Ort: " + richtigeFarbe);
-                }
-
-                if (versuche % 3 == 0 ) {
-                    if (!(versuche == 12)) {
-                        System.out.println("\n#################################################################");
-                        System.out.println("Farben: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange");
-                        System.out.println("#################################################################");
-                    }
-                }
-
-            }
 
 
             if (!gewonnen) {
@@ -124,6 +59,78 @@ public class Main {
                     "Farben: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange\n" +
                     "Du gibst nacheinander vier Farben ein\n" +
                     "Maximal 12 Versuche");
+        }
+    }
+
+    static void farbfolge(String[] farben, String[] geheimCode) {
+        Random generator = new Random();
+        for (int i = 0; i < 4; i++) {
+            geheimCode[i] = farben[generator.nextInt(farben.length)];
+        }
+    }
+
+    static void spiel(int versuche, String [] geheimCode, boolean gewonnen) {
+        while (versuche < 12) {
+            versuche++;
+            System.out.println();
+
+            System.out.println("\nVersuch " + versuche + " von 12");
+
+            String[] eingabe = new String[4];
+            System.out.print("Gib deine erste Farbe ein: ");
+            eingabe[0] = spielregel.nextLine().toLowerCase();
+
+            System.out.print("Gib deine zweite Farbe ein: ");
+            eingabe[1] = spielregel.nextLine().toLowerCase();
+
+            System.out.print("Gib deine dritte Farbe ein: ");
+            eingabe[2] = spielregel.nextLine().toLowerCase();
+
+            System.out.print("Gib deine vierte Farbe ein: ");
+            eingabe[3] = spielregel.nextLine().toLowerCase();
+
+
+            int richtigerOrt = 0;
+            int richtigeFarbe = 0;
+            boolean[] benutztGeheim = new boolean[4];
+            boolean[] benutztEingabe = new boolean[4];
+
+            for (int i = 0; i < 4; i++) {
+                if (eingabe[i].equals(geheimCode[i])) {
+                    richtigerOrt++;
+                    benutztGeheim[i] = true;
+                    benutztEingabe[i] = true;
+                }
+            }
+
+            for (int i = 0; i < 4; i++) {
+                if (!benutztEingabe[i]) {
+                    for (int j = 0; j < 4; j++) {
+                        if (!benutztGeheim[j] && eingabe[i].equals(geheimCode[j])) {
+                            richtigeFarbe++;
+                            benutztGeheim[j] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+            if (richtigerOrt == 4) {
+                System.out.println(" Glückwunsch! Du hast gewonnen");
+                gewonnen = true;
+            } else {
+                System.out.println("Richtige Farben am richtigen Ort: " + richtigerOrt);
+                System.out.println("Richtige Farben am falschen Ort: " + richtigeFarbe);
+            }
+
+            if (versuche % 3 == 0) {
+                if (!(versuche == 12)) {
+                    System.out.println("\n#################################################################");
+                    System.out.println("Farben: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange");
+                    System.out.println("#################################################################");
+                }
+            }
         }
     }
 }
