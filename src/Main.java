@@ -26,7 +26,7 @@ public class Main {
 
             spiel(farben, versuche, geheimCode, gewonnen);
 
-            ende(gewonnen, weiterspielen);
+            ende(gewonnen, weiterspielen, geheimCode);
         }
     }
 
@@ -48,6 +48,13 @@ public class Main {
                     "Du gibst nacheinander vier Farben ein\n" +
                     "Maximal 12 Versuche");
         }
+
+        if (!(entscheidung1.equals("ja") || entscheidung1.equals("nein"))) {
+            System.out.println("Bro, es isch gstande ja oder nein :(");
+            System.exit(0);
+        }
+
+
     }
 
     static void farbfolge(String[] farben, String[] geheimCode) {
@@ -130,11 +137,12 @@ public class Main {
             }
         }
     }
-    static void ende (boolean gewonnen, boolean weiterspielen) {
+    static void ende (boolean gewonnen, boolean weiterspielen, String [] geheimCode) {
         if (!gewonnen) {
             System.out.println("\n#################################################################");
-            System.out.println("Leider verloren! ");
+            System.out.println("Leider verloren! Der Code wäre gewesen: " + geheimCode + ".");
         }
+
 
         System.out.print("Möchtest du noch eine Runde spielen? (r = ja / b = beenden): ");
         String antwort = spielregel.nextLine();
