@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -64,40 +65,23 @@ public class Main {
             System.out.println("\nVersuch " + versuche + " von 12");
 
             String[] eingabe = new String[4];
-            System.out.print("Gib deine erste Farbe ein: ");
-            eingabe[0] = spielregel.nextLine().toLowerCase();
 
-            if (!(farben.equals(eingabe[0]))) {
-                System.out.println("Ungültige Eingabe");
-                System.out.print("Gib deine erste Farbe ein: ");
-                eingabe[0] = spielregel.nextLine().toLowerCase();
-            }
-
-            System.out.print("Gib deine zweite Farbe ein: ");
-            eingabe[1] = spielregel.nextLine().toLowerCase();
-
-            if (!(farben.equals(eingabe[1]))) {
-                System.out.println("Ungültige Eingabe");
-                System.out.print("Gib deine zweite Farbe ein: ");
-                eingabe[1] = spielregel.nextLine().toLowerCase();
-            }
-
-            System.out.print("Gib deine dritte Farbe ein: ");
-            eingabe[2] = spielregel.nextLine().toLowerCase();
-
-            if (!(farben.equals(eingabe[2]))) {
-                System.out.println("Ungültige Eingabe");
-                System.out.print("Gib deine dritte Farbe ein: ");
-                eingabe[2] = spielregel.nextLine().toLowerCase();
-            }
-
-            System.out.print("Gib deine vierte Farbe ein: ");
-            eingabe[3] = spielregel.nextLine().toLowerCase();
-
-            if (!(farben.equals(eingabe[3]))) {
-                System.out.println("Ungültige Eingabe");
-                System.out.print("Gib deine vierte Farbe ein: ");
-                eingabe[3] = spielregel.nextLine().toLowerCase();
+            for (int i = 0; i < 4; i++) {
+                boolean richtigefarbe = false;
+                while (!richtigefarbe) {
+                    System.out.print("Gib die " + (i+1) + ". Farbe ein: ");
+                    String userInput = spielregel.nextLine().toLowerCase().trim().replaceAll(" ", "");
+                    for (String f : farben) {
+                        if (f.equals(userInput)) {
+                            eingabe[i] = userInput;
+                            richtigefarbe = true;
+                            break;
+                        }
+                    }
+                    if (!richtigefarbe) {
+                        System.out.println("Diese Farbe gibt es nicht. Erlaubt: " + String.join(", ", farben));
+                    }
+                }
             }
 
 
@@ -131,6 +115,7 @@ public class Main {
             if (richtigerOrt == 4) {
                 System.out.println(" Glückwunsch! Du hast gewonnen");
                 gewonnen = true;
+                break;  // Beende die Schleife, wenn gewonnen
             } else {
                 System.out.println("Richtige Farben am richtigen Ort: " + richtigerOrt);
                 System.out.println("Richtige Farben am falschen Ort: " + richtigeFarbe);
