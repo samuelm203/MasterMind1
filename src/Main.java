@@ -10,6 +10,7 @@ public class Main {
         int counter = 0;
         int richtigerort = 0;
         int richtigefarben = 0;
+        int countereins = 1;
 
         String[] farben = {
                 "rot", "blau", "grün", "gelb", "pink", "schwarz", "grau", "orange"
@@ -40,94 +41,108 @@ public class Main {
                     "Ansonsten hast du nach 12 Versuchen verloren.");
         }
 
-        String farbenzufaellig1 = farben[generator.nextInt(farben.length)];
-        String farbenzufaellig2 = farben[generator.nextInt(farben.length)];
-        String farbenzufaellig3 = farben[generator.nextInt(farben.length)];
-        String farbenzufaellig4 = farben[generator.nextInt(farben.length)];
+        while (countereins == 1) {
 
-        System.out.println(farbenzufaellig1 + farbenzufaellig2 + farbenzufaellig3 + farbenzufaellig4);
-        while (counter <= 12) {
-
-            if (richtigerort == 4) {
-                System.out.println("Du hast gewonnen!!! Drücke r um noch eine Runde zuspielen, und f um zubeenden");
-                String letzteeingabe = spielregel.nextLine();
-            }
-
-
-            counter++;
+            String farbenzufaellig1 = farben[generator.nextInt(farben.length)];
+            String farbenzufaellig2 = farben[generator.nextInt(farben.length)];
+            String farbenzufaellig3 = farben[generator.nextInt(farben.length)];
+            String farbenzufaellig4 = farben[generator.nextInt(farben.length)];
             richtigefarben = 0;
-            richtigerort = 0;
+            richtigefarben = 0;
+            counter = 0;
 
-            System.out.print("Gib deine erste Farbe ein: ");
-            String eingabeeins = spielregel.nextLine();
+            System.out.println(farbenzufaellig1 + farbenzufaellig2 + farbenzufaellig3 + farbenzufaellig4);
+            while (counter <= 12) {
 
-            System.out.print("Gib deine zweite Farbe ein: ");
-            String eingabezwei = spielregel.nextLine();
+                countereins++;
+                counter++;
+                richtigefarben = 0;
+                richtigerort = 0;
 
-            System.out.print("Gib deine dritte Farbe ein: ");
-            String eingabedrei = spielregel.nextLine();
+                System.out.print("Gib deine erste Farbe ein: ");
+                String eingabeeins = spielregel.nextLine();
 
-            System.out.print("Gib deine vierte Farbe ein: ");
-            String eingabevier = spielregel.nextLine();
+                System.out.print("Gib deine zweite Farbe ein: ");
+                String eingabezwei = spielregel.nextLine();
 
-            if (eingabeeins.equals(farbenzufaellig1)) {
-                richtigerort++;
-            }
-            if (eingabeeins.equals(farbenzufaellig2)) {
-                richtigefarben++;
-            }
-            if (eingabeeins.equals(farbenzufaellig3)) {
-                richtigefarben++;
-            }
-            if (eingabeeins.equals(farbenzufaellig4)) {
-                richtigefarben++;
-            }
+                System.out.print("Gib deine dritte Farbe ein: ");
+                String eingabedrei = spielregel.nextLine();
 
+                System.out.print("Gib deine vierte Farbe ein: ");
+                String eingabevier = spielregel.nextLine();
 
-            if (eingabezwei.equals(farbenzufaellig1)) {
-                richtigefarben++;
-            }
-            if (eingabezwei.equals(farbenzufaellig2)) {
-                richtigerort++;
-            }
-            if (eingabezwei.equals(farbenzufaellig3)) {
-                richtigefarben++;
-            }
-            if (eingabezwei.equals(farbenzufaellig4)) {
-                richtigefarben++;
-            }
-
-            if (eingabedrei.equals(farbenzufaellig1)) {
-                richtigefarben++;
-            }
-            if (eingabedrei.equals(farbenzufaellig2)) {
-                richtigefarben++;
-            }
-            if (eingabedrei.equals(farbenzufaellig3)) {
-                richtigerort++;
-            }
-            if (eingabedrei.equals(farbenzufaellig4)) {
-                richtigefarben++;
-            }
+                if (eingabeeins.equals(farbenzufaellig1)) {
+                    richtigerort++;
+                }
+                if (eingabeeins.equals(farbenzufaellig2)) {
+                    richtigefarben++;
+                }
+                if (eingabeeins.equals(farbenzufaellig3)) {
+                    richtigefarben++;
+                }
+                if (eingabeeins.equals(farbenzufaellig4)) {
+                    richtigefarben++;
+                }
 
 
-            if (eingabevier.equals(farbenzufaellig1)) {
-                richtigefarben++;
-            }
-            if (eingabevier.equals(farbenzufaellig2)) {
-                richtigefarben++;
-            }
-            if (eingabevier.equals(farbenzufaellig3)) {
-                richtigefarben++;
-            }
-            if (eingabevier.equals(farbenzufaellig4)) {
-                richtigerort++;
-            }
+                if (eingabezwei.equals(farbenzufaellig1)) {
+                    richtigefarben++;
+                }
+                if (eingabezwei.equals(farbenzufaellig2)) {
+                    richtigerort++;
+                }
+                if (eingabezwei.equals(farbenzufaellig3)) {
+                    richtigefarben++;
+                }
+                if (eingabezwei.equals(farbenzufaellig4)) {
+                    richtigefarben++;
+                }
+
+                if (eingabedrei.equals(farbenzufaellig1)) {
+                    richtigefarben++;
+                }
+                if (eingabedrei.equals(farbenzufaellig2)) {
+                    richtigefarben++;
+                }
+                if (eingabedrei.equals(farbenzufaellig3)) {
+                    richtigerort++;
+                }
+                if (eingabedrei.equals(farbenzufaellig4)) {
+                    richtigefarben++;
+                }
 
 
-            if (!(richtigerort ==4)) {
-                System.out.println("So viele sind richtig: " + richtigerort +
-                        " und so viele sind an falscher Stelle: " + richtigefarben + ".");
+                if (eingabevier.equals(farbenzufaellig1)) {
+                    richtigefarben++;
+                }
+                if (eingabevier.equals(farbenzufaellig2)) {
+                    richtigefarben++;
+                }
+                if (eingabevier.equals(farbenzufaellig3)) {
+                    richtigefarben++;
+                }
+                if (eingabevier.equals(farbenzufaellig4)) {
+                    richtigerort++;
+                }
+
+
+                if (!(richtigerort == 4)) {
+                    System.out.println("So viele sind richtig: " + richtigerort +
+                            " und so viele sind an falscher Stelle: " + richtigefarben + ".");
+                }
+
+                if (richtigerort == 4) {
+                    System.out.println("Gratulieren, du hast gewonnen!");
+                    System.out.println("Drücke r, um noch eine Runde zuspielen und b um das Spiel zubeenden");
+                    String letzteeingabe = spielregel.nextLine();
+                    if (letzteeingabe.equals("r")) {
+                        countereins = 1;
+                    } else {
+                        System.exit(0);
+                    }
+                }
+
+
             }
         }
     }
