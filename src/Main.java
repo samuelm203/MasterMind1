@@ -12,7 +12,7 @@ public class Main {
                 "rot", "blau", "grün", "gelb", "pink", "schwarz", "grau", "orange"
         };
 
-        System.out.println("Kennst du das Spiel MasterMind? Für ja = 1 / Für nein = 2 ");
+        System.out.println("Kennst du die Regeln für das Spiel MasterMind? Für ja = 1 / Für nein = 2 ");
         int entscheidung1 = Integer.parseInt(spielregel.nextLine());
 
         if (entscheidung1 == 1) {
@@ -43,10 +43,11 @@ public class Main {
 
             while (versuche < 12) {
                 versuche++;
+                System.out.println();
 
                 System.out.println("\nVersuch " + versuche + " von 12");
 
-                // Eingabe
+                // Eingabe der Farben
                 String[] eingabe = new String[4];
                 System.out.print("Gib deine erste Farbe ein: ");
                 eingabe[0] = spielregel.nextLine();
@@ -97,15 +98,25 @@ public class Main {
                     System.out.println("Richtige Farben am richtigen Ort: " + richtigerOrt);
                     System.out.println("Richtige Farben am falschen Ort: " + richtigeFarbe);
                 }
+
+                // Nach jeder dritten Runde, Ausgabe der Farben
+                if (versuche % 3 == 0 ) {
+                    if (!(versuche == 12)) {
+                        System.out.println("\n#################################################################");
+                    System.out.println("Farben: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange");
+                    System.out.println("#################################################################");
+                    }
+                }
+
             }
+
 
             if (!gewonnen) {
                 System.out.println("Leider verloren");
             }
 
-            // Nochmal spielen?
             System.out.print("Möchtest du noch eine Runde spielen? (r = ja / b = beenden): ");
-            String antwort = spielregel.nextLine().toLowerCase();
+            String antwort = spielregel.nextLine();
             if (!antwort.equals("r")) {
                 weiterspielen = false;
             }
