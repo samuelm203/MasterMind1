@@ -138,7 +138,7 @@ public class Main {
     }
 
 
-    static void ende (boolean gewonnen, boolean weiterspielen, String [] geheimCode) {
+    static boolean ende (boolean gewonnen, boolean weiterspielen, String [] geheimCode) {
         if (!gewonnen) {
             System.out.println("\n#################################################################");
             System.out.println("Leider verloren! Der Code wäre gewesen: " + Arrays.toString(geheimCode) + ".");
@@ -149,10 +149,23 @@ public class Main {
         System.out.print("Möchtest du noch eine Runde spielen? (r = ja / b = beenden): ");
         String antwort = scanner.nextLine();
         System.out.println("#################################################################");
-        if (!antwort.equals("r")) {
+
+        while (!antwort.equals("r") && !antwort.equals("b")) {
+            System.out.println("r oder b");
+            antwort = scanner.nextLine();
+        }
+
+        if (antwort.equals("b")) {
             System.out.println("Spiel wird beendet...");
             System.exit(0);
         }
+        if (antwort.equals("r")) {
+            System.out.println("\n#################################################################");
+            System.out.println("Farben: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange");
+            System.out.println("#################################################################");
+            return true;
+        }
+        return false;
     }
 
 }
