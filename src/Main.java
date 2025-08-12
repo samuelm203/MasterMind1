@@ -34,13 +34,13 @@ public class Main {
 
     static void spielregeln() {
         System.out.println("Kennst du die Regeln für das Spiel MasterMind? Antworte mit Ja oder Nein!");
-        String entscheidung1 = spielregel.nextLine().toLowerCase();
+        String kenntRegeln = spielregel.nextLine().toLowerCase();
 
-        if (entscheidung1.equals("ja")) {
+        if (kenntRegeln.equals("ja")) {
             System.out.println("Die möglichen Farben sind: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange");
         }
 
-        if (entscheidung1.equals("nein")) {
+        if (kenntRegeln.equals("nein")) {
             System.out.println("Spielregeln:\n" +
                     "Es gibt eine versteckte Farbenfolge, die aus vier Farben besteht\n" +
                     "Dabei dürfen die Farben doppelt vorkommen\n" +
@@ -49,7 +49,7 @@ public class Main {
                     "Maximal 12 Versuche");
         }
 
-        if (!(entscheidung1.equals("ja") || entscheidung1.equals("nein"))) {
+        if (!(kenntRegeln.equals("ja") || kenntRegeln.equals("nein"))) {
             System.out.println("Bro, es isch gstande ja oder nein :(");
             System.exit(0);
         }
@@ -122,7 +122,7 @@ public class Main {
             if (richtigerOrt == 4) {
                 System.out.println(" Glückwunsch! Du hast gewonnen");
                 gewonnen = true;
-                break;  // Beende die Schleife, wenn gewonnen
+                break;
             } else {
                 System.out.println("Richtige Farben am richtigen Ort: " + richtigerOrt);
                 System.out.println("Richtige Farben am falschen Ort: " + richtigeFarbe);
@@ -140,7 +140,8 @@ public class Main {
     static void ende (boolean gewonnen, boolean weiterspielen, String [] geheimCode) {
         if (!gewonnen) {
             System.out.println("\n#################################################################");
-            System.out.println("Leider verloren! Der Code wäre gewesen: " + geheimCode + ".");
+            System.out.println("Leider verloren! Der Code wäre gewesen: " + Arrays.toString(geheimCode) + ".");
+
         }
 
 
