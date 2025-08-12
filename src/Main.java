@@ -86,11 +86,12 @@ public class Main {
                         }
                     }
                     if (!richtigefarbe) {
-                        System.out.println("Diese Farbe gibt es nicht . Erlaubt: " + String.join(", ", farben));
+                        System.out.println("Diese Farbe gibt es nicht. Erlaubt: " + String.join(", ", farben));
                     }
                 }
             }
 
+            //Elio
 
             int richtigerOrt = 0;
             int richtigeFarbe = 0;
