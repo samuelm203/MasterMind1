@@ -149,7 +149,8 @@ public class Main {
         String antwort = spielregel.nextLine();
         System.out.println("#################################################################");
         if (!antwort.equals("r")) {
-            weiterspielen = false;
+            System.out.println("Spiel wird beendet...");
+            System.exit(0);
         }
     }
 }
