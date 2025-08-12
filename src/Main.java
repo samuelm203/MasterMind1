@@ -24,12 +24,11 @@ public class Main {
             int versuche = 0;
             boolean gewonnen = false;
 
-            spiel(farben, versuche, geheimCode, gewonnen);
+            gewonnen = spiel(farben, versuche, geheimCode, false);
 
             ende(gewonnen, weiterspielen, geheimCode);
         }
     }
-
 
 
     static void spielregeln() {
@@ -64,7 +63,8 @@ public class Main {
         }
     }
 
-    static void spiel(String [] farben, int versuche, String [] geheimCode, boolean gewonnen) {
+
+    static boolean spiel(String[] farben, int versuche, String[] geheimCode, boolean gewonnen) {
         while (versuche < 12) {
             versuche++;
             System.out.println();
@@ -76,7 +76,7 @@ public class Main {
             for (int i = 0; i < 4; i++) {
                 boolean richtigefarbe = false;
                 while (!richtigefarbe) {
-                    System.out.print("Gib die " + (i+1) + ". Farbe ein: ");
+                    System.out.print("Gib die " + (i + 1) + ". Farbe ein: ");
                     String userInput = spielregel.nextLine().toLowerCase().trim().replaceAll(" ", "");
                     for (String f : farben) {
                         if (f.equals(userInput)) {
@@ -118,11 +118,9 @@ public class Main {
             }
 
 
-
             if (richtigerOrt == 4) {
                 System.out.println(" Glückwunsch! Du hast gewonnen");
-                gewonnen = true;
-                break;
+                return true;
             } else {
                 System.out.println("Richtige Farben am richtigen Ort: " + richtigerOrt);
                 System.out.println("Richtige Farben am falschen Ort: " + richtigeFarbe);
@@ -136,7 +134,10 @@ public class Main {
                 }
             }
         }
+        return false;
     }
+
+
     static void ende (boolean gewonnen, boolean weiterspielen, String [] geheimCode) {
         if (!gewonnen) {
             System.out.println("\n#################################################################");
@@ -153,4 +154,5 @@ public class Main {
             System.exit(0);
         }
     }
+
 }
