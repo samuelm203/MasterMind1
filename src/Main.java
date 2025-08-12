@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner spielregel = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         Random generator = new Random();
@@ -33,7 +33,7 @@ public class Main {
 
     static void spielregeln() {
         System.out.println("Kennst du die Regeln für das Spiel MasterMind? Antworte mit Ja oder Nein!");
-        String kenntRegeln = spielregel.nextLine().toLowerCase();
+        String kenntRegeln = scanner.nextLine().toLowerCase();
 
         if (kenntRegeln.equals("ja")) {
             System.out.println("Die möglichen Farben sind: Rot, Blau, Grün, Gelb, Pink, Schwarz, Grau und Orange");
@@ -77,7 +77,7 @@ public class Main {
                 boolean richtigefarbe = false;
                 while (!richtigefarbe) {
                     System.out.print("Gib die " + (i + 1) + ". Farbe ein: ");
-                    String userInput = spielregel.nextLine().toLowerCase().trim().replaceAll(" ", "");
+                    String userInput = scanner.nextLine().toLowerCase().trim().replaceAll(" ", "");
                     for (String f : farben) {
                         if (f.equals(userInput)) {
                             eingabe[i] = userInput;
@@ -147,7 +147,7 @@ public class Main {
 
 
         System.out.print("Möchtest du noch eine Runde spielen? (r = ja / b = beenden): ");
-        String antwort = spielregel.nextLine();
+        String antwort = scanner.nextLine();
         System.out.println("#################################################################");
         if (!antwort.equals("r")) {
             System.out.println("Spiel wird beendet...");
