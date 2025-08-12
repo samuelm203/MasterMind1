@@ -120,6 +120,7 @@ public class Main {
 
 
             if (richtigerOrt == 4) {
+                System.out.println("\n#################################################################");
                 System.out.println(" Glückwunsch! Du hast gewonnen");
                 return true;
             } else {
@@ -146,10 +147,9 @@ public class Main {
 
         }
 
-
+        System.out.println("#################################################################");
         System.out.print("Möchtest du noch eine Runde spielen? (r = ja / b = beenden): ");
         String antwort = scanner.nextLine();
-        System.out.println("#################################################################");
 
         while (!antwort.equals("r") && !antwort.equals("b")) {
             System.out.println("r oder b");
@@ -168,5 +168,4 @@ public class Main {
         }
         return false;
     }
-
 }
